@@ -5,9 +5,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'wallpaper': "url('/src/images/background.webp')",
-      }
     },
   },
   plugins: [],

@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import ImageModal from '../components/ImageModal'
 import { useFetch } from '../hooks/useFetch'
 import VanillaTilt from 'vanilla-tilt';
+import Loader from '../components/Loader';
 
 
 function Tilt(props) {
@@ -35,17 +36,17 @@ export default function Detail() {
   }
 
   if (loading) {
-    return <h1 className='mt-14 text-center text-white text-3xl'>Loading card...</h1>
+    return <Loader text={'Loading card info'} />
   }
 
   return (
     <>
       {
         !card
-          ? <h1 className='mt-14 text-center text-white text-3xl'>Loading card...</h1>
+          ? <Loader text={'Loading card info'} />
           : <div className='container mx-auto flex flex-col lg:flex-row'>
             <Tilt className='lg:w-1/2' options={{
-              scale: 1.2,
+              scale: 1,
               speed: 1000,
               max: 30
             }}>
