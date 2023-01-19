@@ -89,7 +89,7 @@ export default function Detail() {
               {(card.variants && card.variants.length > 0) &&
                 <>
                   <h3 className='mt-5 text-white text-xl font-medium'>Variants</h3>
-                  <div className='my-5 h-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 mx-auto'>
+                  <div className='my-5 h-full grid grid-cols-4 md:grid-cols-4 lg:grid-cols-6 gap-4 mx-auto'>
                     {card.variants.map((variant) =>
                       <img
                         key={variant.id}
