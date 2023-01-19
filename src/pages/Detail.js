@@ -2,7 +2,19 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import ImageModal from '../components/ImageModal'
 import { useFetch } from '../hooks/useFetch'
+import VanillaTilt from 'vanilla-tilt';
 
+
+function Tilt(props) {
+  const { options, ...rest } = props;
+  const tilt = useRef(null);
+
+  useEffect(() => {
+    VanillaTilt.init(tilt.current, options);
+  }, [options]);
+
+  return <div ref={tilt} {...rest} />;
+}
 
 export default function Detail() {
 
@@ -32,9 +44,13 @@ export default function Detail() {
         !card
           ? <h1 className='mt-14 text-center text-white text-3xl'>Loading card...</h1>
           : <div className='container mx-auto flex flex-col lg:flex-row'>
-            <div className='lg:w-1/2'>
+            <Tilt className='lg:w-1/2' options={{
+              scale: 1,
+              speed: 1000,
+              max: 30
+            }}>
               <img src={card.image} alt={card.name} />
-            </div>
+            </Tilt>
             <div className='lg:w-1/2 flex flex-col mt-8 lg:mt-0'>
               <h1 className='text-white text-4xl font-bold'>{card.name}</h1>
               <div className='mt-3 flex flex-row flex-wrap'>
