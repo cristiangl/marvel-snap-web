@@ -45,11 +45,11 @@ export default function Detail() {
           ? <h1 className='mt-14 text-center text-white text-3xl'>Loading card...</h1>
           : <div className='container mx-auto flex flex-col lg:flex-row'>
             <Tilt className='lg:w-1/2' options={{
-              scale: 1,
+              scale: 1.2,
               speed: 1000,
               max: 30
             }}>
-              <img src={card.image} alt={card.name} />
+              <img className='w-full' src={card.image} alt={card.name} />
             </Tilt>
             <div className='lg:w-1/2 flex flex-col mt-8 lg:mt-0'>
               <h1 className='text-white text-4xl font-bold'>{card.name}</h1>
