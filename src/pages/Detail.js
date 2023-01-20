@@ -45,14 +45,14 @@ export default function Detail() {
         !card
           ? <Loader text={'Loading card info'} />
           : <div className='container mx-auto flex flex-col lg:flex-row'>
-            <Tilt className='lg:w-1/2' options={{
+            <Tilt className='flex flex-1 items-start justify-center' options={{
               scale: 1,
               speed: 1000,
               max: 30
             }}>
               <img className='w-full' src={card.image} alt={card.name} />
             </Tilt>
-            <div className='lg:w-1/2 flex flex-col mt-8 lg:mt-0'>
+            <div className='flex flex-1 flex-col mt-8 lg:mt-0'>
               <h1 className='text-white text-4xl font-bold'>{card.name}</h1>
               <div className='mt-3 flex flex-row flex-wrap'>
                 {card.abilities.map((ability) => <span className="bg-red-600 text-white text-sm font-medium mt-2 mr-2 px-2 py-1 rounded">{ability}</span>)}
