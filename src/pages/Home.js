@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import CardGallery from '../components/CardGallery';
 import Search from '../components/Search'
+import { BASE_API_URL } from '../constants';
 import { useFetch } from '../hooks/useFetch';
 
 const filterCards = (cards, keyword) => {
@@ -14,7 +15,7 @@ const filterCards = (cards, keyword) => {
 export default function Home() {
 
     const [cardName, setCardName] = useState('');
-    const ALL_CARDS_BASE_URL = 'https://marvel-sanp-api.vercel.app/cards'
+    const ALL_CARDS_BASE_URL = BASE_API_URL + '/cards'
     const { data, loading, error, action: getAllCards } = useFetch(ALL_CARDS_BASE_URL)
 
     const cards = data ? filterCards(data, cardName) : []

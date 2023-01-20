@@ -4,6 +4,7 @@ import ImageModal from '../components/ImageModal'
 import { useFetch } from '../hooks/useFetch'
 import VanillaTilt from 'vanilla-tilt';
 import Loader from '../components/Loader';
+import { BASE_API_URL } from '../constants'
 
 
 function Tilt(props) {
@@ -20,7 +21,7 @@ function Tilt(props) {
 export default function Detail() {
 
   const { name } = useParams()
-  const BASE_URL = 'https://marvel-sanp-api.vercel.app/card/' + name
+  const BASE_URL = BASE_API_URL + '/card/' + name
   const { data: card, loading, error, action: getCard } = useFetch(BASE_URL)
   const [selectedVariant, setSelectedVariant] = useState('');
   const [imageModal, setImageModal] = useState(null);
@@ -45,12 +46,12 @@ export default function Detail() {
         !card
           ? <Loader text={'Loading card info'} />
           : <div className='container mx-auto flex flex-col lg:flex-row'>
-            <Tilt className='flex flex-1 items-start justify-center' options={{
+            <Tilt className='flex flex-1 items-start justify-center m-5' options={{
               scale: 1,
               speed: 1000,
               max: 30
             }}>
-              <img className='w-full' src={card.image} alt={card.name} />
+              <img className='w-full xl:w-3/4 2xl:w-3/5 drop-shadow-[0_50px_50px_rgba(255,255,255,0.3)]' src={BASE_API_URL + card.image} alt={card.name} />
             </Tilt>
             <div className='flex flex-1 flex-col mt-8 lg:mt-0'>
               <h1 className='text-white text-4xl font-bold'>{card.name}</h1>
@@ -78,10 +79,10 @@ export default function Detail() {
               {(card.connectedCards && card.connectedCards.length > 0) &&
                 <>
                   <h3 className='mt-5 text-white text-xl font-medium'>Related cards</h3>
-                  <div className='my-5 h-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 mx-auto'>
+                  <div className='my-3 h-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mx-auto'>
                     {card.connectedCards.map((connectedCard) =>
                       <Link key={connectedCard.id} to={`/card/${connectedCard.id}`}>
-                        <img className='transition ease-in-out duration-300 hover:scale-110 cursor-pointer' src={connectedCard.image} alt={connectedCard.id} />
+                        <img className='transition ease-in-out duration-300 hover:scale-110 cursor-pointer' src={BASE_API_URL + connectedCard.image} alt={connectedCard.id} />
                       </Link>)}
                   </div>
                 </>
@@ -89,12 +90,12 @@ export default function Detail() {
               {(card.variants && card.variants.length > 0) &&
                 <>
                   <h3 className='mt-5 text-white text-xl font-medium'>Variants</h3>
-                  <div className='my-5 h-full grid grid-cols-4 md:grid-cols-4 lg:grid-cols-6 gap-4 mx-auto'>
+                  <div className='my-3 h-full grid grid-cols-4 md:grid-cols-4 lg:grid-cols-6 gap-4 mx-auto'>
                     {card.variants.map((variant) =>
                       <img
                         key={variant.id}
                         className='transition ease-in-out duration-300 hover:scale-110 cursor-pointer'
-                        src={variant.image}
+                        src={BASE_API_URL + variant.image}
                         alt={variant.id}
                         onClick={() => {
                           setSelectedVariant(variant.image)
@@ -107,7 +108,7 @@ export default function Detail() {
               <ImageModal
                 showModal={imageModal}
                 setShowModal={setImageModal}
-                content={<img className='relative h-full' src={selectedVariant} alt={'Variant'} />}
+                content={<img className='relative h-full' src={BASE_API_URL + selectedVariant} alt={'Variant'} />}
               />
             </div>
           </div>

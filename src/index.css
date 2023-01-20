@@ -5,9 +5,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
   height: 100%;
-  background-image: url('/public/images/background.svg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: url('/public/images/background.svg') no-repeat center center fixed; 
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
 }
 
 code {

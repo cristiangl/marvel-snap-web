@@ -7,7 +7,7 @@ export default function ImageModal({showModal, setShowModal, content}) {
     }
 
     return (
-        <div className="fixed inset-0 z-10 overflow-y-auto flex items-center justify-center">
+        <div className="fixed inset-0 p-8 xl:p-0 z-10 overflow-y-auto w-full flex items-center justify-center">
             <div
                 className="fixed inset-0 w-full h-full bg-black opacity-50"
                 onClick={() => setShowModal(false)}
